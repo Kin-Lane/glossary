@@ -108,7 +108,7 @@
         ]
       }
     },
-    "/glossary/{glossary_id}": {
+    "/glossary/{glossary_id}/": {
       "get": {
         "summary": "retrieve glossary term",
         "description": "retrieve glossary term",
