@@ -17,9 +17,9 @@
   "paths": {
     "/glossary/": {
       "get": {
-        "summary": "retrieves all glossary terms",
+        "summary": "retrieve glossary terms",
         "description": "pulls all glossary terms, with filter by keyword",
-        "operationId": "getGlossarys",
+        "operationId": "getGlossary",
         "parameters": [
           {
             "name": "appid",
@@ -39,7 +39,7 @@
             "name": "query",
             "in": "query",
             "description": "a text query to search across glossary",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
@@ -118,7 +118,7 @@
             "name": "glossary_id",
             "in": "path",
             "description": "id for the glossary term",
-            "required": "true",
+            "required": true,
             "type": "integer",
             "format": "id"
           },
@@ -135,7 +135,7 @@
             "description": "your appkey for accessing the API",
             "required": true,
             "type": "string"
-          }          
+          }
         ],
         "responses": {
           "200": {
@@ -161,7 +161,7 @@
             "name": "glossary_id",
             "in": "path",
             "description": "id for the glossary term",
-            "required": "true",
+            "required": true,
             "type": "integer",
             "format": "id"
           },
@@ -218,7 +218,7 @@
             "name": "glossary_id",
             "in": "path",
             "description": "id for the glossary term",
-            "required": "true",
+            "required": true,
             "type": "integer",
             "format": "id"
           },
@@ -235,7 +235,7 @@
             "description": "your appkey for accessing the API",
             "required": true,
             "type": "string"
-          }          
+          }
         ],
         "responses": {
           "200": {
@@ -411,15 +411,6 @@
         "definition": {
           "description": "description of the glossary",
           "type": "string"
-        },
-        "tags": {
-          "description": "tags for the glossary",
-          "type": "string"
-        },
-        "slug": {
-          "description": "slug for the glossary",
-          "type": "string",
-          "format": "id"
         }
       }
     },
@@ -437,21 +428,6 @@
         "api_count": {
           "description": "number of items api with tag",
           "type": "integer"
-        }
-      }
-    },    
-    "errorModel": {
-      "required": [
-        "code",
-        "message"
-      ],
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
         }
       }
     }
