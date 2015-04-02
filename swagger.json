@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Glossary",
-    "description": "This is an API glossary API",
+    "description": "This is an API glossary, allowing me to add definitions for key terms and phrases used in the API space.",
     "termsOfService": "http://stack.network/terms-of-service.html",
     "version": "v1"
   },
@@ -15,12 +15,26 @@
     "glossarylication/json"
   ],
   "paths": {
-    "glossary/": {
+    "/glossary/": {
       "get": {
         "summary": "retrieves all glossary terms",
         "description": "pulls all glossary terms, with filter by keyword",
         "operationId": "getGlossarys",
         "parameters": [
+          {
+            "name": "appid",
+            "in": "query",
+            "description": "your appid for accessing the API",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appkey",
+            "in": "query",
+            "description": "your appkey for accessing the API",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "query",
             "in": "query",
@@ -41,8 +55,7 @@
           }
         },
         "tags": [
-          "glossary",
-          "glossaryging"
+          "Glossary"
         ]
       },
       "post": {
@@ -51,23 +64,30 @@
         "operationId": "addGlossary",
         "parameters": [
           {
+            "name": "appid",
+            "in": "formData",
+            "description": "your appid for accessing the API",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appkey",
+            "in": "formData",
+            "description": "your appkey for accessing the API",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "term",
-            "in": "query",
+            "in": "formData",
             "description": "name of the glossary",
             "required": true,
             "type": "string"
           },
           {
             "name": "definition",
-            "in": "query",
+            "in": "formData",
             "description": "description of the glossary",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "tags",
-            "in": "query",
-            "description": "tags for the glossary",
             "required": true,
             "type": "string"
           }
@@ -84,21 +104,106 @@
           }
         },
         "tags": [
-          "glossary",
-          "glossaryging"
+          "Glossary"
         ]
       }
     },
-    "glossary/{slug}": {
+    "/glossary/{glossary_id}": {
       "get": {
-        "summary": "Retrieve a glossary using its slug",
-        "description": "Returns the glossary detail",
-        "operationId": "getGlossary",
+        "summary": "retrieve glossary term",
+        "description": "retrieve glossary term",
+        "operationId": "getGlossaryTerm",
         "parameters": [
           {
-            "name": "slug",
+            "name": "glossary_id",
             "in": "path",
-            "description": "slug for the glossary, notice this is in the path, not a query variable",
+            "description": "id for the glossary term",
+            "required": "true",
+            "type": "integer",
+            "format": "id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "glossary response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/glossary"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Glossary"
+        ]
+      },
+      "put": {
+        "summary": "update glossary",
+        "description": "update glossary",
+        "operationId": "updateGlossaryTerm",
+        "parameters": [
+          {
+            "name": "glossary_id",
+            "in": "path",
+            "description": "id for the glossary term",
+            "required": "true",
+            "type": "integer",
+            "format": "id"
+          },
+          {
+            "name": "appid",
+            "in": "formData",
+            "description": "your appid for accessing the API",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appkey",
+            "in": "formData",
+            "description": "your appkey for accessing the API",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "term",
+            "in": "formData",
+            "description": "name of the glossary",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "definition",
+            "in": "formData",
+            "description": "description of the glossary",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "glossary response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/glossary"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Glossary"
+        ]
+      },
+      "delete": {
+        "summary": "delete glossary term",
+        "description": "deletes an glossary term",
+        "operationId": "deleteGlossaryTerm",
+        "parameters": [
+          {
+            "name": "glossary_id",
+            "in": "path",
+            "description": "id for the glossary term",
             "required": "true",
             "type": "integer",
             "format": "id"
@@ -119,84 +224,151 @@
           "glossary",
           "glossaryging"
         ]
-      },
-      "put": {
-        "summary": "update glossary",
-        "description": "update glossary",
-        "operationId": "updateGlossary",
+      }
+    },
+    "/glossary/{glossary_id}/tags/": {
+      "get": {
+        "summary": "retrieve glossary tags",
+        "description": "Returns the tags for an glossary",
+        "operationId": "getglossaryTags",
         "parameters": [
           {
-            "name": "term",
-            "in": "query",
-            "description": "name of the glossary",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "definition",
-            "in": "query",
-            "description": "description of the glossary",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "tags",
-            "in": "query",
-            "description": "tags for the glossary",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "slug",
+            "name": "glossary_id",
             "in": "path",
-            "description": "unique slug for the glossary",
+            "description": "id for glossary",
+            "required": true,
+            "type": "integer",
+            "format": "id"
+          },
+          {
+            "name": "appid",
+            "in": "query",
+            "description": "your appid for accessing the glossary",
             "required": true,
             "type": "string"
-          }          
+          },
+          {
+            "name": "appkey",
+            "in": "query",
+            "description": "your appkey for accessing the glossary",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
-            "description": "glossary response",
+            "description": "Glossary Tags Response",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/glossary"
+                "$ref": "#/definitions/tag"
               }
             }
           }
         },
         "tags": [
-          "glossary",
-          "glossaryging"
+          "Tags"
         ]
       },
-      "delete": {
-        "summary": "delete glossary",
-        "description": "deletes an glossary",
-        "operationId": "deleteGlossary",
+      "post": {
+        "summary": "add tag to glossary",
+        "description": "add tag for glossary",
+        "operationId": "addGlossaryTag",
         "parameters": [
           {
-            "name": "slug",
+            "name": "glossary_id",
             "in": "path",
-            "description": "unique slug for the glossary",
+            "description": "id for the glossary",
+            "required": true,
+            "type": "integer",
+            "format": "id"
+          },
+          {
+            "name": "appid",
+            "in": "formData",
+            "description": "your appid for accessing the glossary",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appkey",
+            "in": "formData",
+            "description": "your appkey for accessing the glossary",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "in": "formData",
+            "description": "tag name",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "glossary response",
+            "description": "Glossary Response",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/glossary"
+                "$ref": "#/definitions/tag"
               }
             }
           }
         },
         "tags": [
-          "glossary",
-          "glossaryging"
+          "Tags"
+        ]
+      }
+    },
+    "/glossary/{glossary_id}/tags/{tag}": {
+      "delete": {
+        "summary": "delete a glossary tag",
+        "description": "deletes a tag applied to glossary",
+        "operationId": "deleteglossaryTag",
+        "parameters": [
+          {
+            "name": "glossary_id",
+            "in": "path",
+            "description": "id for the glossary",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appid",
+            "in": "query",
+            "description": "your appid for accessing the glossary",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appkey",
+            "in": "query",
+            "description": "your appkey for accessing the glossary",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "in": "path",
+            "description": "tag to remove from glossary",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Glossary Tag Response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tag"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Tags"
         ]
       }
     }
@@ -224,6 +396,23 @@
         }
       }
     },
+    "tag": {
+      "properties": {
+        "tag_id": {
+          "description": "id for the tag",
+          "type": "integer",
+          "format": "id"
+        },
+        "tag": {
+          "description": "text tag",
+          "type": "string"
+        },
+        "api_count": {
+          "description": "number of items api with tag",
+          "type": "integer"
+        }
+      }
+    },    
     "errorModel": {
       "required": [
         "code",
