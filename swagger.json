@@ -12,7 +12,7 @@
     "http"
   ],
   "produces": [
-    "glossarylication/json"
+    "application/json"
   ],
   "paths": {
     "/glossary/": {
