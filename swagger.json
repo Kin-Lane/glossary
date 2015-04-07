@@ -9,7 +9,7 @@
   "host": "glossary.api.kinlane.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "produces": [
     "application/json"
