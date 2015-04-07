@@ -17,9 +17,9 @@
   "paths": {
     "/glossary/": {
       "get": {
-        "summary": "retrieve glossary terms",
-        "description": "pulls all glossary terms, with filter by keyword",
-        "operationId": "getGlossary",
+        "summary": "glossary terms",
+        "description": "glossary terms",
+        "operationId": "getGlossaryTerms",
         "parameters": [
           {
             "name": "appid",
@@ -60,7 +60,7 @@
       },
       "post": {
         "summary": "add glossary",
-        "description": "add a new glossary",
+        "description": "add glossary",
         "operationId": "addGlossary",
         "parameters": [
           {
@@ -110,8 +110,8 @@
     },
     "/glossary/{glossary_id}/": {
       "get": {
-        "summary": "retrieve glossary term",
-        "description": "retrieve glossary term",
+        "summary": "glossary term",
+        "description": "glossary term",
         "operationId": "getGlossaryTerm",
         "parameters": [
           {
@@ -211,7 +211,7 @@
       },
       "delete": {
         "summary": "delete glossary term",
-        "description": "deletes an glossary term",
+        "description": "delete glossary term",
         "operationId": "deleteGlossaryTerm",
         "parameters": [
           {
@@ -255,8 +255,8 @@
     },
     "/glossary/{glossary_id}/tags/": {
       "get": {
-        "summary": "retrieve glossary tags",
-        "description": "Returns the tags for an glossary",
+        "summary": "glossary tags",
+        "description": "glossary tags",
         "operationId": "getglossaryTags",
         "parameters": [
           {
@@ -298,8 +298,8 @@
         ]
       },
       "post": {
-        "summary": "add tag to glossary",
-        "description": "add tag for glossary",
+        "summary": "add glossary term",
+        "description": "add glossary term",
         "operationId": "addGlossaryTag",
         "parameters": [
           {
@@ -350,8 +350,8 @@
     },
     "/glossary/{glossary_id}/tags/{tag}": {
       "delete": {
-        "summary": "delete a glossary tag",
-        "description": "deletes a tag applied to glossary",
+        "summary": "delete glossary tag",
+        "description": "delete glossary tag",
         "operationId": "deleteglossaryTag",
         "parameters": [
           {
