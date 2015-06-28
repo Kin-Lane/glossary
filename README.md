@@ -1,2 +1,2 @@
-# glossary
-This is a glossary service.
+# Glossary
+This is a glossary API.
