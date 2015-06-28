@@ -56,6 +56,14 @@
         },
         "tags": [
           "Glossary"
+        ],
+        "security": [
+          {
+            "appid": []
+          },
+          {
+            "appkey": []
+          }
         ]
       },
       "post": {
@@ -105,6 +113,14 @@
         },
         "tags": [
           "Glossary"
+        ],
+        "security": [
+          {
+            "appid": []
+          },
+          {
+            "appkey": []
+          }
         ]
       }
     },
@@ -150,6 +166,14 @@
         },
         "tags": [
           "Glossary"
+        ],
+        "security": [
+          {
+            "appid": []
+          },
+          {
+            "appkey": []
+          }
         ]
       },
       "put": {
@@ -207,6 +231,14 @@
         },
         "tags": [
           "Glossary"
+        ],
+        "security": [
+          {
+            "appid": []
+          },
+          {
+            "appkey": []
+          }
         ]
       },
       "delete": {
@@ -250,6 +282,14 @@
         },
         "tags": [
           "Glossary"
+        ],
+        "security": [
+          {
+            "appid": []
+          },
+          {
+            "appkey": []
+          }
         ]
       }
     },
@@ -295,6 +335,14 @@
         },
         "tags": [
           "Tags"
+        ],
+        "security": [
+          {
+            "appid": []
+          },
+          {
+            "appkey": []
+          }
         ]
       },
       "post": {
@@ -345,6 +393,14 @@
         },
         "tags": [
           "Tags"
+        ],
+        "security": [
+          {
+            "appid": []
+          },
+          {
+            "appkey": []
+          }
         ]
       }
     },
@@ -396,10 +452,30 @@
         },
         "tags": [
           "Tags"
+        ],
+        "security": [
+          {
+            "appid": []
+          },
+          {
+            "appkey": []
+          }
         ]
       }
     }
   },
+  "securityDefinitions": {
+    "appid": {
+      "type": "apiKey",
+      "name": "appid",
+      "in": "query"
+    },
+    "appkey": {
+      "type": "apiKey",
+      "name": "appkey",
+      "in": "query"
+    }
+  },  
   "definitions": {
     "glossary": {
       "properties": {
