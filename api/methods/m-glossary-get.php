@@ -29,6 +29,9 @@ $app->get($route, function ()  use ($app){
 
 		// manipulation zone
 
+		$host = $_SERVER['HTTP_HOST'];
+		$glossary_id = prepareIdOut($glossary_id,$host);
+
 		$F = array();
 		$F['glossary_id'] = $glossary_id;
 		$F['term'] = $term;

@@ -47,6 +47,9 @@ $app->post($route, function () use ($app){
 		mysql_query($query) or die('Query failed: ' . mysql_error());
 		$glossary_id = mysql_insert_id();
 
+    $host = $_SERVER['HTTP_HOST'];
+	  $glossary_id= prepareIdOut($glossary_id,$host);
+
 		$ReturnObject = array();
 		$ReturnObject['message'] = "Glossary Term Added";
 		$ReturnObject['glossary_id'] = $glossary_id;

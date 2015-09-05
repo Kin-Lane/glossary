@@ -2,6 +2,8 @@
 $route = '/glossary/:glossary_id/';
 $app->get($route, function ($glossary_id)  use ($app){
 
+	$host = $_SERVER['HTTP_HOST'];
+	$glossary_id = prepareIdIn($glossary_id,$host);
 
 	$ReturnObject = array();
 
@@ -18,6 +20,8 @@ $app->get($route, function ($glossary_id)  use ($app){
 		$definition = $Glossary['definition'];
 
 		// manipulation zone
+
+		$glossary_id= prepareIdOut($glossary_id,$host);
 
 		$F = array();
 		$F['glossary_id'] = $glossary_id;

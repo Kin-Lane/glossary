@@ -2,6 +2,8 @@
 $route = '/glossary/:glossary_id/tags/:tag';
 $app->delete($route, function ($glossary_id,$tag)  use ($app){
 
+	$host = $_SERVER['HTTP_HOST'];
+	$glossary_id = prepareIdIn($glossary_id,$host);
 
 	$ReturnObject = array();
 
@@ -23,6 +25,8 @@ $app->delete($route, function ($glossary_id,$tag)  use ($app){
 			$DeleteQuery = "DELETE FROM glossary_tag_pivot WHERE tag_id = " . trim($tag_id) . " AND glossary_id = " . trim($glossary_id);
 			$DeleteResult = mysql_query($DeleteQuery) or die('Query failed: ' . mysql_error());
 			}
+
+		$tag_id= prepareIdOut($tag_id,$host);
 
 		$F = array();
 		$F['tag_id'] = $tag_id;

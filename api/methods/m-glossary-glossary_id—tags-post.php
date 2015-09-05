@@ -2,6 +2,8 @@
 $route = '/glossary/:glossary_id/tags/';
 $app->post($route, function ($glossary_id)  use ($app){
 
+	$host = $_SERVER['HTTP_HOST'];
+	$glossary_id = prepareIdIn($glossary_id,$host);
 
 	$ReturnObject = array();
 
@@ -39,6 +41,8 @@ $app->post($route, function ($glossary_id)  use ($app){
 			$query = "INSERT INTO glossary_tag_pivot(tag_id,glossary_id) VALUES(" . $tag_id . "," . $glossary_id . "); ";
 			mysql_query($query) or die('Query failed: ' . mysql_error());
 			}
+
+		$tag_id= prepareIdOut($tag_id,$host);
 
 		$F = array();
 		$F['tag_id'] = $tag_id;

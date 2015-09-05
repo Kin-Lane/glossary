@@ -2,6 +2,8 @@
 $route = '/glossary/:glossary_id/tags/';
 $app->get($route, function ($glossary_id)  use ($app){
 
+	$host = $_SERVER['HTTP_HOST'];
+	$glossary_id = prepareIdIn($glossary_id,$host);
 
 	$ReturnObject = array();
 
@@ -19,6 +21,8 @@ $app->get($route, function ($glossary_id)  use ($app){
 		$tag = $Database['tag'];
 		$glossary_count = $Database['Profile_Count'];
 
+		$tag_id= prepareIdOut($tag_id,$host);
+
 		$F = array();
 		$F['tag_id'] = $tag_id;
 		$F['tag'] = $tag;
@@ -29,5 +33,5 @@ $app->get($route, function ($glossary_id)  use ($app){
 
 		$app->response()->header("Content-Type", "application/json");
 		echo stripslashes(format_json(json_encode($ReturnObject)));
-	});	
+	});
  ?>

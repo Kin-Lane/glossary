@@ -2,13 +2,16 @@
 $route = '/glossary/:glossary_id/';
 $app->put($route, function ($glossary_id) use ($app){
 
+  $host = $_SERVER['HTTP_HOST'];
+	$glossary_id = prepareIdIn($glossary_id,$host);
+
  	$request = $app->request();
  	$param = $request->params();
 
 	if(isset($param['term'])){ $term = $param['term']; } else { $term = ''; }
 	if(isset($param['definition'])){ $definition = $param['definition']; } else { $definition = ''; }
 
-  	$LinkQuery = "SELECT * FROM glossary WHERE glossary_id = " . $glossary_id;
+  $LinkQuery = "SELECT * FROM glossary WHERE glossary_id = " . $glossary_id;
 	//echo $LinkQuery . "<br />";
 	$LinkResult = mysql_query($LinkQuery) or die('Query failed: ' . mysql_error());
 
@@ -30,6 +33,8 @@ $app->put($route, function ($glossary_id) use ($app){
 		//echo $query . "<br />";
 		mysql_query($query) or die('Query failed: ' . mysql_error());
 
+	  $glossary_id= prepareIdOut($glossary_id,$host);
+
 		$ReturnObject = array();
 		$ReturnObject['message'] = "Glossary Updated!";
 		$ReturnObject['glossary_id'] = $glossary_id;
@@ -38,6 +43,8 @@ $app->put($route, function ($glossary_id) use ($app){
 	else
 		{
 		$Link = mysql_fetch_assoc($LinkResult);
+
+    $glossary_id= prepareIdOut($glossary_id,$host);
 
 		$ReturnObject = array();
 		$ReturnObject['message'] = "Glossary Doesn't Exist!";
